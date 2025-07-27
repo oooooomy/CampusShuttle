@@ -16,3 +16,5 @@
 - 退款方式 ('original','manual')
 
 - 退款状态 ('processing','success','failed')
+
+- 站点类型 ('campus','transport_hub')

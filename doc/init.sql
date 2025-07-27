@@ -20,13 +20,20 @@ CREATE TABLE `t_user`
 
 CREATE TABLE `t_site`
 (
-    `id`               bigint(20)  NOT NULL AUTO_INCREMENT COMMENT '用户ID',
-    `name`             varchar(20) NOT NULL COMMENT '站点名',
-    `boarding_address` varchar(20) NOT NULL COMMENT '上车地址',
-    `created_at`       datetime    NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-    `updated_at`       datetime    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    `id`         bigint(20)     NOT NULL AUTO_INCREMENT COMMENT '站点ID',
+    `site_code`  varchar(20)    NOT NULL COMMENT '站点编码(如XY_AIRPORT)',
+    `site_name`  varchar(50)    NOT NULL COMMENT '站点名称(如咸阳国际机场)',
+    `location`   varchar(100)   NOT NULL COMMENT '详细地址',
+    `longitude`  decimal(10, 6) NOT NULL COMMENT '经度',
+    `latitude`   decimal(10, 6) NOT NULL COMMENT '纬度',
+    `is_active`  tinyint(1)     NOT NULL DEFAULT '1' COMMENT '是否启用(1-启用,0-停用)',
+    `site_type`  varchar(20)    NOT NULL COMMENT '站点类型(校区/交通枢纽)',
+    `sort_order` int(11)                 DEFAULT '0' COMMENT '排序权重',
+    `created_at` datetime       NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `updated_at` datetime       NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     PRIMARY KEY (`id`),
-    UNIQUE KEY `idx_name` (`name`)
+    UNIQUE KEY `uk_site_code` (`site_code`),
+    KEY `idx_site_type` (`site_type`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4 COMMENT ='站点信息表';
 
