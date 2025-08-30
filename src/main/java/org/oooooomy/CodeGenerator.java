@@ -11,7 +11,7 @@ import java.util.Collections;
 
 public class CodeGenerator {
 
-    public static final String PROJECT_PATH = "C:\\Code\\campus-shuttle\\src\\main";
+    public static final String PROJECT_PATH = "/Users/aa/Programes/CampusShuttle/src/main";
 
     public static void main(String[] args) {
         FastAutoGenerator.create("jdbc:mysql://localhost:3306/campus_shuttle", "root", "123456")

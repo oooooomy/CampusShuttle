@@ -20,40 +20,33 @@ CREATE TABLE `t_user`
 
 CREATE TABLE `t_site`
 (
-    `id`         bigint(20)     NOT NULL AUTO_INCREMENT COMMENT '站点ID',
-    `site_code`  varchar(20)    NOT NULL COMMENT '站点编码(如XY_AIRPORT)',
-    `site_name`  varchar(50)    NOT NULL COMMENT '站点名称(如咸阳国际机场)',
-    `location`   varchar(100)   NOT NULL COMMENT '详细地址',
-    `longitude`  decimal(10, 6) NOT NULL COMMENT '经度',
-    `latitude`   decimal(10, 6) NOT NULL COMMENT '纬度',
-    `is_active`  tinyint(1)     NOT NULL DEFAULT '1' COMMENT '是否启用(1-启用,0-停用)',
-    `site_type`  varchar(20)    NOT NULL COMMENT '站点类型(校区/交通枢纽)',
-    `sort_order` int(11)                 DEFAULT '0' COMMENT '排序权重',
-    `created_at` datetime       NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-    `updated_at` datetime       NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    `id`          bigint(20)   NOT NULL AUTO_INCREMENT COMMENT '站点ID',
+    `site_name`   varchar(50)  NOT NULL COMMENT '站点名称(如咸阳国际机场)',
+    `description` varchar(100) NOT NULL COMMENT '描述信息(在哪个位置上车)',
+    `is_active`   tinyint(1)   NOT NULL DEFAULT '1' COMMENT '是否启用(1-启用,0-停用)',
+    `site_type`   varchar(20)  NOT NULL COMMENT '站点类型(校区/交通枢纽)',
+    `sort_order`  int(11)               DEFAULT '0' COMMENT '排序权重',
+    `created_at`  datetime     NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `updated_at`  datetime     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     PRIMARY KEY (`id`),
-    UNIQUE KEY `uk_site_code` (`site_code`),
     KEY `idx_site_type` (`site_type`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4 COMMENT ='站点信息表';
 
 CREATE TABLE `t_schedule`
 (
-    `id`                bigint(20)  NOT NULL AUTO_INCREMENT COMMENT '班次ID',
-    `bus_number`        varchar(20) NOT NULL COMMENT '车牌号',
-    `departure_site_id` varchar(50) NOT NULL COMMENT '出发站点ID',
-    `arrival_site_id`   varchar(50) NOT NULL COMMENT '到达站点ID',
-    `departure_time`    time        NOT NULL COMMENT '发车时间',
-    `total_seats`       int(3)      NOT NULL COMMENT '总座位数',
-    `driver_name`       varchar(50)          DEFAULT NULL COMMENT '司机姓名',
-    `driver_contact`    varchar(20)          DEFAULT NULL COMMENT '司机联系方式',
-    `is_active`         tinyint(1)  NOT NULL DEFAULT '1' COMMENT '是否启用(1-启用,0-停用)',
-    `schedule_type`     varchar(20) NOT NULL DEFAULT 'regular' COMMENT '班次类型',
-    `created_at`        datetime    NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-    `updated_at`        datetime    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    `id`             bigint(20)  NOT NULL AUTO_INCREMENT COMMENT '班次ID',
+    `departure_site` varchar(50) NOT NULL COMMENT '出发站名称(如"长安校区")',
+    `arrival_site`   varchar(50) NOT NULL COMMENT '到达站名称(如"友谊校区")',
+    `departure_time` time        NOT NULL COMMENT '发车时间',
+    `total_seats`    int(3)      NOT NULL COMMENT '总座位数',
+    `is_active`      tinyint(1)  NOT NULL DEFAULT '1' COMMENT '是否启用(1-启用,0-停用)',
+    `schedule_type`  varchar(20) NOT NULL DEFAULT 'regular' COMMENT '班次类型',
+    `created_at`     datetime    NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `updated_at`     datetime    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     PRIMARY KEY (`id`),
     KEY `idx_departure_time` (`departure_time`),
-    KEY `idx_site_pair` (`departure_site_id`, `arrival_site_id`)
+    KEY `idx_site_pair` (`departure_site`, `arrival_site`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4 COMMENT ='班次信息表';
 

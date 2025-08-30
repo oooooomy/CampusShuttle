@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
  * </p>
  *
  * @author Gao YuanMing
- * @since 2025-07-27
+ * @since 2025-08-06
  */
 @RestController
-@RequestMapping("/scheduleInventory")
+@RequestMapping("/schedule/inventory")
 public class ScheduleInventoryController {
 
 }

@@ -9,7 +9,6 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 /**
@@ -18,7 +17,7 @@ import java.time.LocalDateTime;
  * </p>
  *
  * @author Gao YuanMing
- * @since 2025-07-27
+ * @since 2025-08-06
  */
 @Getter
 @Setter
@@ -35,34 +34,16 @@ public class Site implements Serializable {
     private Long id;
 
     /**
-     * 站点编码(如XY_AIRPORT)
-     */
-    @TableField("site_code")
-    private String siteCode;
-
-    /**
      * 站点名称(如咸阳国际机场)
      */
     @TableField("site_name")
     private String siteName;
 
     /**
-     * 详细地址
+     * 描述信息(在哪个位置上车)
      */
-    @TableField("location")
-    private String location;
-
-    /**
-     * 经度
-     */
-    @TableField("longitude")
-    private BigDecimal longitude;
-
-    /**
-     * 纬度
-     */
-    @TableField("latitude")
-    private BigDecimal latitude;
+    @TableField("description")
+    private String description;
 
     /**
      * 是否启用(1-启用,0-停用)

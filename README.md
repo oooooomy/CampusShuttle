@@ -18,3 +18,7 @@
 - 退款状态 ('processing','success','failed')
 
 - 站点类型 ('campus','transport_hub')
+
+## 版本迭代
+
+### v0.1
