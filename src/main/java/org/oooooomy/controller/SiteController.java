@@ -1,6 +1,5 @@
 package org.oooooomy.controller;
 
-import jakarta.annotation.Resource;
 import org.oooooomy.model.entity.Site;
 import org.oooooomy.service.SiteService;
 import org.oooooomy.utils.R;
@@ -20,13 +19,16 @@ import java.util.List;
 @RequestMapping("/site")
 public class SiteController {
 
-    @Resource
-    private SiteService siteService;
+    private final SiteService siteService;
+
+    public SiteController(SiteService siteService) {
+        this.siteService = siteService;
+    }
 
     /**
      * 查询所有站点
      *
-     * @return R<List<Site>>
+     * @return R<List < Site>>
      */
     @GetMapping
     public R<List<Site>> getSite() {

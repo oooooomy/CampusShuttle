@@ -1,7 +1,6 @@
 package org.oooooomy.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import jakarta.annotation.Resource;
 import org.oooooomy.model.entity.Schedule;
 import org.oooooomy.service.ScheduleService;
 import org.oooooomy.utils.R;
@@ -20,13 +19,16 @@ import org.springframework.web.bind.annotation.*;
 public class ScheduleController {
 
     //TODO 查询某天的班次
-    @Resource
-    private ScheduleService scheduleService;
+    private final ScheduleService scheduleService;
+
+    public ScheduleController(ScheduleService scheduleService) {
+        this.scheduleService = scheduleService;
+    }
 
     /**
      * 分页查询班次
      *
-     * @return R<Page<Schedule>>
+     * @return R<Page < Schedule>>
      */
     @GetMapping
     public R<Page<Schedule>> getAllSchedules(
